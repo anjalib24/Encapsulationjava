@@ -1,0 +1,99 @@
+The **difference** between **encapsulation** and **inheritance** in Java, two fundamental principles of object-oriented programming, lies in their purposes and how they manage data and relationships between classes. Here’s a breakdown:
+
+### Encapsulation
+
+**Encapsulation** is the practice of bundling the data (fields) and methods (functions) that operate on the data into a single unit, typically a class. It restricts direct access to some of the object's components, which can help prevent unintended interference and misuse of the data.
+
+**Key Aspects of Encapsulation**:
+1. **Data Hiding**: Protects the internal state of an object by making fields private and providing public getter and setter methods to access and modify them.
+2. **Controlled Access**: Access to data is controlled through methods, allowing for validation and management of data integrity.
+3. **Abstraction**: Provides a clear and simplified interface while hiding the complex implementation details.
+
+**Example**:
+```java
+public class Person {
+    private String name;
+    private int age;
+
+    public Person(String name, int age) {
+        this.name = name;
+        setAge(age); // Using setter with validation
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        if (age > 0) {
+            this.age = age;
+        } else {
+            System.out.println("Age must be positive.");
+        }
+    }
+}
+```
+
+### Inheritance
+
+**Inheritance** is a mechanism that allows a new class (subclass or derived class) to inherit properties and behaviors (fields and methods) from an existing class (superclass or base class). It promotes code reusability and establishes a natural hierarchy between classes.
+
+**Key Aspects of Inheritance**:
+1. **Code Reusability**: Allows a subclass to use methods and fields from its superclass, reducing code duplication.
+2. **Hierarchical Relationships**: Establishes an "is-a" relationship between the subclass and the superclass.
+3. **Method Overriding**: Allows a subclass to provide a specific implementation of a method that is already defined in its superclass.
+
+**Example**:
+```java
+// Superclass
+public class Animal {
+    public void eat() {
+        System.out.println("This animal eats food.");
+    }
+}
+
+// Subclass
+public class Dog extends Animal {
+    // Overriding the eat method
+    @Override
+    public void eat() {
+        System.out.println("The dog eats dog food.");
+    }
+
+    public void bark() {
+        System.out.println("The dog barks.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Dog myDog = new Dog();
+        myDog.eat(); // Calls the overridden method in Dog
+        myDog.bark(); // Calls the method specific to Dog
+    }
+}
+```
+
+### Summary of Differences
+
+- **Purpose**:
+  - **Encapsulation**: Focuses on hiding the internal state and protecting object data by providing controlled access through methods.
+  - **Inheritance**: Focuses on creating a hierarchical relationship between classes to promote code reuse and extend functionality.
+
+- **Implementation**:
+  - **Encapsulation**: Achieved by using access modifiers (private, protected, public) and providing getter and setter methods.
+  - **Inheritance**: Achieved by using the `extends` keyword to derive a new class from an existing class.
+
+- **Scope**:
+  - **Encapsulation**: Deals with the internal workings of a single class.
+  - **Inheritance**: Deals with the relationship and interaction between multiple classes.
+
+Understanding both encapsulation and inheritance allows you to design robust, flexible, and reusable code by managing data access and class relationships effectively.

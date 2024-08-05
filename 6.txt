@@ -1,0 +1,103 @@
+To **achieve encapsulation** in Java, you need to follow these steps:
+
+1. **Declare Fields as Private**: This ensures that the fields cannot be accessed directly from outside the class.
+2. **Provide Public Getter and Setter Methods**: These methods allow controlled access to the private fields.
+3. **Implement Validation Logic (Optional)**: Include validation in setter methods to ensure that the fields hold valid data.
+
+### Example of Achieving Encapsulation
+
+Here's a step-by-step example of how to implement encapsulation in a Java class:
+
+#### 1. Define a Class with Private Fields
+
+```java
+public class Employee {
+    // Step 1: Declare private fields
+    private String name;
+    private int age;
+    private double salary;
+
+    // Constructor to initialize fields
+    public Employee(String name, int age, double salary) {
+        this.name = name;
+        this.age = age;
+        this.salary = salary;
+    }
+
+    // Getter for name
+    public String getName() {
+        return name;
+    }
+
+    // Setter for name
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    // Getter for age
+    public int getAge() {
+        return age;
+    }
+
+    // Setter for age with validation
+    public void setAge(int age) {
+        if (age > 0) {
+            this.age = age;
+        } else {
+            System.out.println("Age must be positive.");
+        }
+    }
+
+    // Getter for salary
+    public double getSalary() {
+        return salary;
+    }
+
+    // Setter for salary with validation
+    public void setSalary(double salary) {
+        if (salary >= 0) {
+            this.salary = salary;
+        } else {
+            System.out.println("Salary cannot be negative.");
+        }
+    }
+}
+```
+
+#### 2. Use the Class with Encapsulation
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        // Create an instance of Employee
+        Employee emp = new Employee("John Doe", 30, 50000.00);
+
+        // Access fields via getters
+        System.out.println("Name: " + emp.getName());
+        System.out.println("Age: " + emp.getAge());
+        System.out.println("Salary: " + emp.getSalary());
+
+        // Modify fields via setters
+        emp.setName("Jane Smith");
+        emp.setAge(35); // Valid age
+        emp.setSalary(55000.00); // Valid salary
+
+        // Print updated values
+        System.out.println("Updated Name: " + emp.getName());
+        System.out.println("Updated Age: " + emp.getAge());
+        System.out.println("Updated Salary: " + emp.getSalary());
+
+        // Attempt invalid updates
+        emp.setAge(-5); // Invalid age
+        emp.setSalary(-1000.00); // Invalid salary
+    }
+}
+```
+
+### Summary
+
+- **Private Fields**: The fields `name`, `age`, and `salary` are private, making them inaccessible directly from outside the `Employee` class.
+- **Public Getters and Setters**: These methods provide controlled access to the private fields. Getters return the current values, while setters allow modification with validation.
+- **Validation Logic**: The setters for `age` and `salary` include validation to ensure that the data remains valid.
+
+By following these steps, you achieve encapsulation in Java, which helps protect the internal state of an object, manage access to its data, and ensure that the data remains consistent and valid.

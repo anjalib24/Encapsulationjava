@@ -1,0 +1,115 @@
+**Getters** and **setters** are methods used in Java to provide controlled access to the private fields of a class. They are essential components of **encapsulation**, ensuring that data within an object can be accessed and modified in a controlled manner.
+
+### What are Getters and Setters?
+
+1. **Getters**:
+   - **Purpose**: Provide read access to private fields.
+   - **Naming Convention**: Typically start with `get` followed by the name of the field with the first letter capitalized. For example, `getName()` for a `name` field.
+   - **Example**:
+     ```java
+     public String getName() {
+         return name;
+     }
+     ```
+
+2. **Setters**:
+   - **Purpose**: Provide write access to private fields.
+   - **Naming Convention**: Typically start with `set` followed by the name of the field with the first letter capitalized. For example, `setName(String name)` for a `name` field.
+   - **Example**:
+     ```java
+     public void setName(String name) {
+         this.name = name;
+     }
+     ```
+
+### Why Use Getters and Setters?
+
+1. **Controlled Access**:
+   - **Validation**: Setters can include validation logic to ensure that the data remains valid when it is updated. For example, you can restrict a setter to accept only positive values.
+   - **Encapsulation**: They protect the internal state of an object from being modified directly, allowing you to manage how fields are accessed and changed.
+
+2. **Read-Only or Write-Only Properties**:
+   - **Read-Only**: You can provide only a getter and no setter if you want to expose a field’s value but prevent modifications.
+   - **Write-Only**: You can provide only a setter and no getter if you want to allow changes to the field but not expose its value.
+
+3. **Flexibility**:
+   - **Change Implementation**: Getters and setters allow you to change the internal implementation of a class without affecting code that uses the class, as long as the public interface remains the same.
+
+4. **Debugging and Logging**:
+   - **Intercept Changes**: By using getters and setters, you can add debugging or logging statements to track how and when fields are accessed or modified.
+
+### Example Demonstrating Getters and Setters
+
+Here’s an example of a `Person` class that uses getters and setters:
+
+```java
+public class Person {
+    // Private fields
+    private String name;
+    private int age;
+
+    // Constructor
+    public Person(String name, int age) {
+        this.name = name;
+        setAge(age); // Using setter for age with validation
+    }
+
+    // Getter for name
+    public String getName() {
+        return name;
+    }
+
+    // Setter for name
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    // Getter for age
+    public int getAge() {
+        return age;
+    }
+
+    // Setter for age with validation
+    public void setAge(int age) {
+        if (age > 0) { // Validation: age must be positive
+            this.age = age;
+        } else {
+            System.out.println("Age must be positive.");
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Creating an instance of Person
+        Person person = new Person("Alice", 30);
+
+        // Accessing fields via getters
+        System.out.println("Name: " + person.getName());
+        System.out.println("Age: " + person.getAge());
+
+        // Modifying fields via setters
+        person.setName("Bob");
+        person.setAge(35); // Valid age
+        person.setAge(-5); // Invalid age (demonstrates validation in setter)
+
+        System.out.println("Updated Name: " + person.getName());
+        System.out.println("Updated Age: " + person.getAge());
+    }
+}
+```
+
+### Explanation
+
+- **Private Fields**: `name` and `age` are private, ensuring encapsulation.
+- **Getters**: `getName()` and `getAge()` provide read access to the private fields.
+- **Setters**: `setName(String name)` and `setAge(int age)` provide write access, with `setAge` including validation to ensure the age is positive.
+
+### Summary
+
+- **Getters** provide read access to private fields.
+- **Setters** provide write access and can include validation to control changes.
+- **Encapsulation**: Getters and setters help in managing how fields are accessed and modified.
+- **Flexibility**: They allow for changes in the class implementation without affecting external code.
+
+Using getters and setters helps maintain the integrity of an object's data, control access, and provide a clean interface for interacting with class fields.
